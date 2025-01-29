@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  storjdashboard:
+    build: .
+    container_name: storjdashboard
+    restart: always
+    ports:
+      - "28000:80"  # Map external port 28000 to container port 80
+    volumes:
+      - ./storjdashboard:/var/www/html
+    environment:
+      - STORJ_HOST=storj.mydns.net
+      - STORJ_PORT=28000
+      - STORJ_DASHBOARD_IP_PORT=192.168.0.100:14002
