@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Define GitHub file URLs
+GITHUB_REPO="https://github.com/storjdashboard/storjdashboard_docker/raw/refs/heads/main"
+FILES=("docker-compose.yml" "Dockerfile" "init.sh" "nginx.conf")
+
+# Download the latest files from GitHub
+echo "🔄 Downloading latest files from GitHub..."
+for file in "${FILES[@]}"; do
+    echo "📥 Fetching $file..."
+    curl -s -o "$file" "$GITHUB_REPO/$file"
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to download $file"
+        exit 1
+    fi
+done
+echo "✅ All files downloaded successfully."
+
 # Check if Docker is installed
 if ! command -v docker &> /dev/null; then
     echo "❌ Docker is not installed. Please install Docker first."
