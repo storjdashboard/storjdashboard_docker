@@ -7,6 +7,18 @@ cd php
 GITHUB_REPO="https://raw.githubusercontent.com/storjdashboard/storjdashboard_docker/refs/heads/main/php"
 FILES=("Dockerfile")
 
+# Download the latest files from GitHub
+echo "🔄 Downloading latest files from GitHub..."
+for file in "${FILES[@]}"; do
+    echo "📥 Fetching $file..."
+    curl -s -o "$file" "$GITHUB_REPO/$file"
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to download $file"
+        exit 1
+    fi
+done
+echo "✅ All files downloaded successfully."
+
 cd ..
 
 # Define GitHub file URLs
