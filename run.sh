@@ -44,10 +44,15 @@ fi
 echo "🚀 Starting Docker Compose..."
 docker-compose up -d --build
 
+wget https://github.com/storjdashboard/storjdashboard_docker/raw/refs/heads/main/file_setup.sh
+chmod 775 *
+
 # Show running containers
 docker ps
 
 # Show user prompt for further instructions
 echo '------------------------------'
 echo "✅ Setup Complete"
+echo ""
+echo "Plese load file_setup.sh ... /bin/bash file_setup.sh"
 echo '------------------------------'
