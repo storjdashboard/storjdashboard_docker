@@ -12,7 +12,7 @@ if [[ "$create_config" == "yes" ]]; then
     
     # Create the config.php file in the 'www' directory
     mkdir -p www
-    echo "<?php \$ip=\"$storj_ip_port\"; \$code=\"$auth_code\"; ?>" > ./www/config.php
+    echo "<?php \$ip=\"$storj_ip_port\"; \$auth=\"$auth_code\"; ?>" > ./www/config.php
     echo "config.php has been created in the 'www' directory."
 fi
 
