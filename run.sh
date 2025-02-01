@@ -1,5 +1,14 @@
 #!/bin/bash
 
+mkdir -p php
+cd php
+
+# Define GitHub file URLs
+GITHUB_REPO="https://raw.githubusercontent.com/storjdashboard/storjdashboard_docker/refs/heads/main/php"
+FILES=("Dockerfile")
+
+cd ..
+
 # Define GitHub file URLs
 GITHUB_REPO="https://raw.githubusercontent.com/storjdashboard/storjdashboard_docker/refs/heads/main"
 FILES=("docker-compose.yml" "Dockerfile" "nginx.conf")
