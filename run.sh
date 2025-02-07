@@ -23,7 +23,7 @@ cd ..
 
 # Define GitHub file URLs
 GITHUB_REPO="https://raw.githubusercontent.com/storjdashboard/storjdashboard_docker/refs/heads/main"
-FILES=("docker-compose.yml" "Dockerfile" "nginx.conf")
+FILES=("docker-compose.yml", "nginx.conf", "clone_environment.sh", "file_setup.sh", "run.sh")
 
 # Download the latest files from GitHub
 echo "🔄 Downloading latest files from GitHub..."
