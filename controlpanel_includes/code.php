@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($name && $port && $volume) {
             $servers[$name] = ['port' => $port, 'volume' => $volume];
             file_put_contents($serversFile, json_encode($servers, JSON_PRETTY_PRINT));
-			createWritableDirectory("$dir/servers/$volume");
+			createWritableDirectory("$dir/../servers/$volume");
             logAction("Added server: $name (Port: $port, Volume: $volume)");
         }
     } elseif ($action === 'remove_server') {
@@ -56,10 +56,10 @@ function createWritableDirectory($directory) {
             $error = error_get_last();
             die("Error creating directory '$directory': " . $error['message'] . "\n");
         } else {
-            echo "Directory '$directory' created successfully.\n";
+           // echo "Directory '$directory' created successfully.\n";
         }
     } else {
-        echo "Directory '$directory' already exists.\n";
+        //echo "Directory '$directory' already exists.\n";
     }
 
     // Attempt to set writable permissions
@@ -67,7 +67,7 @@ function createWritableDirectory($directory) {
         $error = error_get_last();
         die("Error setting permissions on '$directory': " . $error['message'] . "\n");
     } else {
-        echo "Permissions set to 777 for '$directory'.\n";
+       //echo "Permissions set to 777 for '$directory'.\n";
     }
 }
 
