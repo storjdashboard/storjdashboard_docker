@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $fileWritable) {
     file_put_contents($configFile, $configContent);
 
     // Redirect back to homepage after saving
-    header("Location: index.php");
+    header("Location: ./");
     exit;
 }
 ?>
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $fileWritable) {
     <div class="container mt-5">
         <div class="d-flex justify-content-between">
             <h1>Edit Config - <?= htmlspecialchars($server) ?></h1>
-            <a href="index.php" class="btn btn-secondary">Back to Dashboard</a>
+            <a href="./" class="btn btn-secondary">Back to Dashboard</a>
         </div>
 
         <?php if (!$fileWritable): ?>
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $fileWritable) {
                 <input type="text" name="auth" value="<?= htmlspecialchars($auth) ?>" class="form-control" <?= !$fileWritable ? 'disabled' : '' ?>>
             </div>
             <button type="submit" class="btn btn-primary" <?= !$fileWritable ? 'disabled' : '' ?>>Save Config</button>
-            <a href="index.php" class="btn btn-secondary">Cancel</a>
+            <a href="./" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </body>
