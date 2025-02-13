@@ -35,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         regenerateDockerCompose($servers);
     } elseif ($action === 'regenerate_nginx') {
         regenerateNginxConfig($servers);
-    } elseif ($action === 'start_docker') {
-        shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
-        logAction("Started Docker containers");
-    } elseif ($action === 'stop_docker') {
-        shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
-        logAction("Stopped Docker containers");
-    } elseif ($action === 'restart_docker') {
-        shell_exec("docker-compose down && docker-compose up -d 2>&1 | tee -a $errorLogFile");
-        logAction("Restarted Docker containers");
-    }
+//    } elseif ($action === 'start_docker') {
+//       shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
+//        logAction("Started Docker containers");
+//    } elseif ($action === 'stop_docker') {
+//        shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
+//        logAction("Stopped Docker containers");
+//    } elseif ($action === 'restart_docker') {
+//        shell_exec("docker-compose down && docker-compose up -d 2>&1 | tee -a $errorLogFile");
+//        logAction("Restarted Docker containers");
+//    }
 }
 
 // Functions
@@ -61,15 +61,15 @@ function createWritableDirectory($directory) {
 
 function regenerateDockerCompose($servers) {
     global $dockerComposeFile, $errorLogFile, $dir;
-    $content = "version: '3.8'\n\nservices:\n  nginx:\n    image: nginx:latest\n    container_name: storj_nginx\n    ports:";
+    $content = "version: '3.5'\n\nservices:\n  nginx:\n    image: nginx:latest\n    container_name: storj_nginx\n    ports:";
     foreach ($servers as $name => $server) {
         $content .= "\n      - \"{$server['port']}:{$server['port']}\"";
     }
     $content .= "\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf:ro\n      - ./:/var/www/html\n    restart: always\n\n  php:\n    build: ./php\n    container_name: storj_php\n    volumes:\n      - ./:/var/www/html\n    restart: always\n    entrypoint: [\"/bin/bash\", \"-c\", \"cron && php-fpm\"]";
     file_put_contents($dockerComposeFile, $content);
-    shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
-    shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
-    logAction("Regenerated docker-compose.yml and restarted containers");
+//    shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
+//    shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
+    logAction("Regenerated docker-compose.yml");
 }
 
 function regenerateNginxConfig($servers) {
