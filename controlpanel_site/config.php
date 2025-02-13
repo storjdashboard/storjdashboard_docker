@@ -13,8 +13,8 @@ if (!$server || !$volume || !$port) {
 }
 
 // Ensure volume directory exists
-if (!is_dir($volume)) {
-    mkdir($volume, 0777, true);
+if (!is_dir("servers/$volume")) {
+    mkdir("servers/$volume", 0777, true);
 }
 
 // Config file path inside volume
