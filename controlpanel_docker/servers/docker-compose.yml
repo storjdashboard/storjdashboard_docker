@@ -1,24 +1,2 @@
 #Control Panel to over-write
-version: '3.5'
-
-services:
-  nginx:
-    image: nginx:latest
-    container_name: storjdashboard_nginx
-    ports:
-      - "12345:12345"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./:/var/www/html
-    restart: always
-
-  php:
-    image: php:fpm
-    container_name: storjdashboard_php
-    volumes:
-      - ./:/var/www/html
-    restart: always
-    entrypoint: ["/bin/bash", "-c", "cron && php-fpm"]
-
-
 
