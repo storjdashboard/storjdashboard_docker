@@ -20,7 +20,8 @@ function updateFiles($volume) {
         "index.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/index.php",
         "daily.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/daily.php",
         "pay.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/pay.php",
-        "audit.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/audit.php"
+        "audit.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/audit.php",
+        "pay_history.php" => "https://raw.githubusercontent.com/storjdashboard/storjdashboard/main/public/pay_history.php"
     ];
 
     // Get the directory from the POST variable
