@@ -15,7 +15,7 @@
 
 1. **Download the latest release**
 
-   - [Latest Release]((https://github.com/storjdashboard/storjdashboard_docker/releases/latest)) 
+   - [Latest Release]([https://github.com/storjdashboard/storjdashboard_docker/releases/latest]) 
 
 2. **Launch the control panel**
 
@@ -54,7 +54,7 @@
 
 ## Support
 
-For issues and feature requests, please visit the [StorjDashboard GitHub Repository]((https://github.com/storjdashboard/storjdashboard_docker/issues))
+For issues and feature requests, please visit the [StorjDashboard GitHub Repository]([https://github.com/storjdashboard/storjdashboard_docker/issues])
 
 ---
 
