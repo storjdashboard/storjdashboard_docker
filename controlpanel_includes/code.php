@@ -1,8 +1,8 @@
 <?php
 // Configuration
 $serversFile = 'servers.json';
-$dockerComposeFile = 'servers/docker-compose.yml';
-$nginxConfigFile = 'servers/nginx.conf';
+$dockerComposeFile = '../../d-config/docker-compose.yml';
+$nginxConfigFile = '../../d-config/nginx.conf';
 $logFile = 'includes/logs/portal.log';
 $errorLogFile = 'includes/logs/error.log';
 $dir = dirname(__FILE__);
