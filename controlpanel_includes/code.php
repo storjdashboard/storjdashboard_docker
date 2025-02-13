@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         regenerateDockerCompose($servers);
     } elseif ($action === 'regenerate_nginx') {
         regenerateNginxConfig($servers);
+    }
 //    } elseif ($action === 'start_docker') {
 //       shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
 //        logAction("Started Docker containers");
