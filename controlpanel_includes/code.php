@@ -62,12 +62,12 @@ function createWritableDirectory($directory) {
 
 function regenerateDockerCompose($servers) {
     global $dockerComposeFile, $errorLogFile, $dir;
-    $content = "version: '3.5'\n\nservices:\n  nginx:\n    image: nginx:latest\n    container_name: storj_nginx\n    ports:";
-    foreach ($servers as $name => $server) {
-        $content .= "\n      - \"{$server['port']}:{$server['port']}\"";
-    }
-    $content .= "\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf:ro\n      - ./:/var/www/html\n    restart: always\n\n  php:\n    build: ./php\n    container_name: storj_php\n    volumes:\n      - ./:/var/www/html\n    restart: always\n    entrypoint: [\"/bin/bash\", \"-c\", \"cron && php-fpm\"]";
-    file_put_contents($dockerComposeFile, $content);
+$content = "version: '3.5'\n\nservices:\n  nginx:\n    image: nginx:latest\n    container_name: storjdashboard_nginx\n    ports:";
+foreach ($servers as $name => $server) {
+    $content .= "\n      - \"{$server['port']}:{$server['port']}\"";
+}
+$content .= "\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf:ro\n      - ./:/var/www/html\n    restart: always\n\n  php:\n    image: php:fpm\n    container_name: storjdashboard_php\n    volumes:\n      - ./:/var/www/html\n    restart: always\n    entrypoint: [\"/bin/bash\", \"-c\", \"cron && php-fpm\"]";
+file_put_contents($dockerComposeFile, $content);
 //    shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
 //    shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
     logAction("Regenerated docker-compose.yml");
