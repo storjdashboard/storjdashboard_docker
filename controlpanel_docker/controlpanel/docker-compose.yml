@@ -8,7 +8,9 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./www:/var/www/html
+      - ../../controlpanel_site:/var/www/html
+      - ../../controlpanel_includes:/var/www/html/includes
+      - ../servers/www:/var/www/html/servers/
     depends_on:
       - php
     restart: always
@@ -17,5 +19,7 @@ services:
     image: php:8.2-fpm
     container_name: controlpanel_php
     volumes:
-      - ./www:/var/www/html
+      - ../../controlpanel_site:/var/www/html
+      - ../../controlpanel_includes:/var/www/html/includes
+      - ../servers/www:/var/www/html/servers/
     restart: always
