@@ -3,8 +3,8 @@
 $serversFile = 'servers.json';
 $dockerComposeFile = '../controlpanel_docker/servers/docker-compose.yml';
 $nginxConfigFile = '../controlpanel_docker/servers/nginx.conf';
-$logFile = 'logs/portal.log';
-$errorLogFile = 'logs/error.log';
+$logFile = 'includes/logs/portal.log';
+$errorLogFile = 'includes/logs/error.log';
 $dir = dirname(__FILE__);
 
 // Load existing servers
