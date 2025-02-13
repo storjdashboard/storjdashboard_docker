@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($name && $port && $volume) {
             $servers[$name] = ['port' => $port, 'volume' => $volume];
             file_put_contents($serversFile, json_encode($servers, JSON_PRETTY_PRINT));
-			createWritableDirectory("$dir/../servers/$volume");
+			$targetDir = realpath("$dir/../servers/$volume");
+			echo $targetDir;
+			createWritableDirectory("$targetDir");
             logAction("Added server: $name (Port: $port, Volume: $volume)");
         }
     } elseif ($action === 'remove_server') {
