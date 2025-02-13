@@ -11,6 +11,12 @@
 - One-click regeneration of `nginx.conf` and `docker-compose.yml`
 - Easy-to-use control panel running on port 80
 
+## One line install
+
+   ```bash
+curl -sL $(curl -s https://api.github.com/repos/storjdashboard/storjdashboard_docker/releases/latest | grep "browser_download_url.*zip" | cut -d '"' -f 4) -o storjdashboard_docker.zip && unzip storjdashboard_docker.zip && cd storjdashboard_docker && bash controlpanel.sh
+   ```
+
 ## Installation
 
 1. **Download the latest release**
