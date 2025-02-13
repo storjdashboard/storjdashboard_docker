@@ -88,7 +88,7 @@ error_reporting(E_ALL);
                                 <button type="submit" class="btn btn-info btn-sm">Update Files</button>
                             </form>
 
-                            <a href="config_edit.php?server=<?= urlencode($name) ?>&volume=<?= urlencode($server['volume']) ?>&port=<?= urlencode($server['port']) ?>" 
+                            <a href="config.php?server=<?= urlencode($name) ?>&volume=<?= urlencode($server['volume']) ?>&port=<?= urlencode($server['port']) ?>" 
                                class="btn btn-secondary btn-sm">Config</a>
 
                             <form method="POST">
