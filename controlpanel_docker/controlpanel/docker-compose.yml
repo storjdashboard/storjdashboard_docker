@@ -23,3 +23,4 @@ services:
       - ../../controlpanel_includes:/var/www/html/includes
       - ../servers/www:/var/www/html/servers/
     restart: always
+    command: ["/bin/sh", "-c", "chmod -R 777 /var/www/html && php-fpm"]
