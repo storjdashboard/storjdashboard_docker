@@ -9,9 +9,9 @@ include_once("includes/code.php");
 
 function updateFiles($volume) {
     global $errorLogFile;
-    if (!is_writable($volume)) {
-        logAction("Error: Directory $volume is not writable");
-        echo "Error: The directory $volume is not writable. Please check permissions.";
+    if (!is_writable("servers/".$volume)) {
+        logAction("Error: Directory servers/$volume is not writable");
+        echo "Error: The directory servers/$volume is not writable. Please check permissions.";
         return;
     }
 
@@ -24,7 +24,7 @@ function updateFiles($volume) {
 
     // Get the directory from the POST variable
     if (isset($_POST['directory']) && !empty($_POST['directory'])) {
-        $directory = $_POST['directory'];
+        $directory = "servers/".$_POST['directory'];
         // Sanitize and validate the directory path
         $directory = rtrim(realpath($directory), '/'); // Ensure it's an absolute path
         if (!$directory || !is_dir($directory)) {
