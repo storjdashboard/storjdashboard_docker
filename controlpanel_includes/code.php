@@ -1,8 +1,8 @@
 <?php
 // Configuration
 $serversFile = 'servers.json';
-$dockerComposeFile = 'servers/docker-compose.yml';
-$nginxConfigFile = 'servers/nginx.conf';
+$dockerComposeFile = '../docker-compose.yml';
+$nginxConfigFile = '../nginx.conf';
 $logFile = 'includes/logs/portal.log';
 $errorLogFile = 'includes/logs/error.log';
 $dir = dirname(__FILE__);
@@ -88,7 +88,7 @@ function regenerateNginxConfig($servers) {
     global $nginxConfigFile, $errorLogFile, $dir;
     $content = "events {}\nhttp {\n";
     foreach ($servers as $name => $server) {
-        $content .= "    server {\n        listen {$server['port']};\n#        server_name $name;\n        root /var/www/html/{$server['volume']};\n        index index.php index.html;\n        location / {\n            try_files \$uri \$uri/ /index.php?\$query_string;\n        }\n        location ~ \\\.php$ {\n            include fastcgi_params;\n            fastcgi_pass php:9000;\n            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;\n        }\n    }\n";
+        $content .= "    server {\n        listen {$server['port']};\n#        server_name $name;\n        root /var/www/html/servers/{$server['volume']};\n        index index.php index.html;\n        location / {\n            try_files \$uri \$uri/ /index.php?\$query_string;\n        }\n        location ~ \\\.php$ {\n            include fastcgi_params;\n            fastcgi_pass php:9000;\n            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;\n        }\n    }\n";
     }
     $content .= "}\n";
     file_put_contents($nginxConfigFile, $content);
