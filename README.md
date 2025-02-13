@@ -17,7 +17,7 @@
 
    - [Latest Release](#) 
 
-2. **Run the setup script**
+2. **Launch the control panel**
 
    ```bash
    bash controlpanel.sh
