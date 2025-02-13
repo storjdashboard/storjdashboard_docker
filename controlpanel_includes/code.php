@@ -79,7 +79,7 @@ $content = "version: '3.5'\n\nservices:\n  nginx:\n    image: nginx:latest\n    
 foreach ($servers as $name => $server) {
     $content .= "\n      - \"{$server['port']}:{$server['port']}\"";
 }
-$content .= "\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf:ro\n      - ./:/var/www/html\n    restart: always\n\n  php:\n    image: php:fpm\n    container_name: storjdashboard_php\n    volumes:\n      - ./:/var/www/html\n    restart: always\n    entrypoint: [\"/bin/bash\", \"-c\", \"cron && php-fpm\"]";
+$content .= "\n    volumes:\n      - ./nginx.conf:/etc/nginx/nginx.conf:ro\n      - ./:/var/www/html\n    restart: always\n\n  php:\n    image: php:fpm\n    container_name: storjdashboard_php\n    volumes:\n      - ./:/var/www/html\n    restart: always\n    entrypoint: [\"/bin/bash\", \"-c\", \"php-fpm\"]";
 file_put_contents($dockerComposeFile, $content);
 //    shell_exec("docker-compose down 2>&1 | tee -a $errorLogFile");
 //    shell_exec("docker-compose up -d 2>&1 | tee -a $errorLogFile");
@@ -90,7 +90,7 @@ function regenerateNginxConfig($servers) {
     global $nginxConfigFile, $errorLogFile, $dir;
     $content = "events {}\nhttp {\n";
     foreach ($servers as $name => $server) {
-        $content .= "    server {\n        listen {$server['port']};\n#        server_name $name;\n        root /var/www/html/{$server['volume']};\n        index index.php index.html;\n        location / {\n            try_files \$uri \$uri/ /index.php?\$query_string;\n        }\n        location ~ \\\.php$ {\n            include fastcgi_params;\n            fastcgi_pass php:9000;\n            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;\n        }\n    }\n";
+        $content .= "    server {\n        listen {$server['port']};\n#        server_name $name;\n        root /var/www/html/www/{$server['volume']};\n        index index.php index.html;\n        location / {\n            try_files \$uri \$uri/ /index.php?\$query_string;\n        }\n        location ~ \\\.php$ {\n            include fastcgi_params;\n            fastcgi_pass php:9000;\n            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;\n        }\n    }\n";
     }
     $content .= "}\n";
     file_put_contents($nginxConfigFile, $content);
