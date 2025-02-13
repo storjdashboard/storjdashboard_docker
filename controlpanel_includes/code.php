@@ -52,12 +52,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function createWritableDirectory($directory) {
     // Check if the directory already exists
     if (!file_exists($directory)) {
-        // Create the directory with read, write, and execute permissions for everyone
-        mkdir($directory, 0777, true);
+        if (!mkdir($directory, 0777, true)) {
+            $error = error_get_last();
+            die("Error creating directory '$directory': " . $error['message'] . "\n");
+        } else {
+            echo "Directory '$directory' created successfully.\n";
+        }
+    } else {
+        echo "Directory '$directory' already exists.\n";
     }
 
-    // Set the directory permissions to writable
-    chmod($directory, 0777); // Set permissions to allow read, write, and execute for owner, group, and others
+    // Attempt to set writable permissions
+    if (!chmod($directory, 0777)) {
+        $error = error_get_last();
+        die("Error setting permissions on '$directory': " . $error['message'] . "\n");
+    } else {
+        echo "Permissions set to 777 for '$directory'.\n";
+    }
 }
 
 function regenerateDockerCompose($servers) {
