@@ -18,7 +18,7 @@ if (!is_dir($volume)) {
 }
 
 // Config file path inside volume
-$configFile = "$volume/config.php";
+$configFile = "servers/$volume/config.php";
 
 // Default values
 $ip = "192.168.250.1:14002";
