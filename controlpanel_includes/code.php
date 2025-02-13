@@ -1,10 +1,10 @@
 <?php
 // Configuration
-$serversFile = 'servers.json';
-$dockerComposeFile = '../../d-config/docker-compose.yml';
-$nginxConfigFile = '../../d-config/nginx.conf';
-$logFile = 'includes/logs/portal.log';
-$errorLogFile = 'includes/logs/error.log';
+$serversFile = '/var/www/html/servers.json';
+$dockerComposeFile = '/var/www/d-config/docker-compose.yml';
+$nginxConfigFile = '/var/www/d-config/nginx.conf';
+$logFile = '/var/www/html/includes/logs/portal.log';
+$errorLogFile = '/var/www/html/includes/logs/error.log';
 $dir = dirname(__FILE__);
 
 // Load existing servers
